@@ -18,18 +18,24 @@ question: "Who was Bruce Lee's master?",
 },
 
 ];
-
+var startScreenEl = document.getElementById("start-screen")
+var choicesEl = document.getElementById("choices")
+var questionTitleEl = document.getElementById("question-title")
+var endScreenEl = document.getElementById("end-screen")
+var timerId ;
+var feedBackEl = document.getElementById("feedback")
 var questionIdx = 0;
 var secondsLeft = 60;
 var currentScore = 0;
 var timeEl = document.getElementById("time")
 //WHEN I click the start button, load the first question
-var startButton = document.createElement("button");
-startButton.innerHTML ="Start Quiz";
+var startButton = document.getElementById("start");
 
 
   function startQuiz(){
-    
+    timerId = setInterval(startTimer, 1000)
+    timeEl.textContent = secondsLeft
+    displayQuestion();
   }
 document.body.appendChild(startButton)
 
@@ -44,22 +50,35 @@ console.log("Start")
 
 //Uses set interval to start the timer
 function startTimer(){
-  var myTimer = setInterval(function (){
-    secondsLeft --;
-    if (secondsLeft === 0) {
-      clearInterval(myTimer)
+  
+    secondsLeft--;
+    timeEl.textContent = secondsLeft
+    if (secondsLeft <= 0) {
+      clearInterval(timerId)
+      endQuiz()
     }
-  }, 1000);
-  displayQuestion();
+  
 }
 
 // Gets the current question index and displays question & answers on the screen
 function displayQuestion(){
+
   // Display the question by getting the currenr question index
   // and pull that object from the array
-  var questionObj = questions[questionIdx];
+  var currentQuestion = questions[questionIdx];
 
   // Display question title
+  questionTitleEl.textContent = currentQuestion.question
+  choicesEl.innerHTML = ""
+  currentQuestion.answers.forEach(function(answer){
+    var answerButton = document.createElement("button")
+    answerButton.setAttribute("class", "choice")
+    answerButton.setAttribute("value", answer)
+    answerButton.textContent = answer
+    answerButton.onclick = questionClicked
+    choicesEl.appendChild(answerButton)
+
+  })
 
   // Loop through the answers
      // Create a button for each answer
@@ -71,27 +90,35 @@ function displayQuestion(){
 }
 
 function questionClicked(){
+  if(this.value !== questions[questionIdx].correctAnswer){
+    secondsLeft = secondsLeft -15
+    if(secondsLeft < 0 ){
+      secondsLeft = 0
+    }
+    timeEl.textContent = secondsLeft
+    feedBackEl.textContent = "You chose wrong!"
+  } else {
+    feedBackEl.textContent = "You got it right!"
+  }
+  questionIdx++
+  if(questionIdx === questions.length){
+    endQuiz()
+  } else {
+    displayQuestion()
+
+  }
 
 }
 
 // Create an event listener for when any answer is clicked
 // Listener should also see if the answer is correct
 
-function answerIsCorrect(){
 
 
-  questionIdx++
-  displayQuestion();
-}
-
-function answerIsWrong(){
-
-  questionIdx++;
-  displayQuestion();
-}
 
 
 function endQuiz(){
+  endScreenEl.removeAttribute("class")
 
 }
 //THEN a timer starts and I am presented with a question
