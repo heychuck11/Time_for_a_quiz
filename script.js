@@ -22,14 +22,14 @@ question: "Who was Bruce Lee's master?",
 var questionIdx = 0;
 var secondsLeft = 60;
 var currentScore = 0;
-
+var timeEl = document.getElementById("time")
 //WHEN I click the start button, load the first question
 var startButton = document.createElement("button");
 startButton.innerHTML ="Start Quiz";
 
 
   function startQuiz(){
-    startButton.addEventListener("click" + questionIdx)
+    
   }
 document.body.appendChild(startButton)
 
@@ -70,6 +70,10 @@ function displayQuestion(){
 
 }
 
+function questionClicked(){
+
+}
+
 // Create an event listener for when any answer is clicked
 // Listener should also see if the answer is correct
 
@@ -87,8 +91,8 @@ function answerIsWrong(){
 }
 
 
-function initialize() {
-  startButton.style.display = "Start"
+function endQuiz(){
+
 }
 //THEN a timer starts and I am presented with a question
 
@@ -106,3 +110,4 @@ function initialize() {
 //THEN the game is over
 //WHEN the game is over
 //THEN I can save my initials and score
+startButton.onclick = startQuiz
