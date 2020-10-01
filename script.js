@@ -63,11 +63,11 @@ function startTimer(){
 // Gets the current question index and displays question & answers on the screen
 function displayQuestion(){
 
-  // Display the question by getting the currenr question index
+  // Display the question by getting the current question index
   // and pull that object from the array
   var currentQuestion = questions[questionIdx];
 
-  // Display question title
+  // Display question 
   questionTitleEl.textContent = currentQuestion.question
   choicesEl.innerHTML = ""
   currentQuestion.answers.forEach(function(answer){
@@ -80,15 +80,9 @@ function displayQuestion(){
 
   })
 
-  // Loop through the answers
-     // Create a button for each answer
-     // Check if the button being created is the correct answer or not
-     // Create a custom attribute to show if it's correct or not
-
-  // Append everything to the page
-
+  
 }
-
+// when the user clicks anwser and it deducts the time if wrong
 function questionClicked(){
   if(this.value !== questions[questionIdx].correctAnswer){
     secondsLeft = secondsLeft -15
@@ -128,13 +122,4 @@ function endQuiz(){
 
 
 
-//WHEN I answer a question
-
-//THEN I am presented with another question
-//WHEN I answer a question incorrectly
-//THEN time is subtracted from the clock
-//WHEN all questions are answered or the timer reaches 0
-//THEN the game is over
-//WHEN the game is over
-//THEN I can save my initials and score
 startButton.onclick = startQuiz
