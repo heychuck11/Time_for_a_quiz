@@ -27,6 +27,7 @@ var feedBackEl = document.getElementById("feedback")
 var questionIdx = 0;
 var secondsLeft = 60;
 var currentScore = 0;
+var initials =""
 var timeEl = document.getElementById("time")
 //WHEN I click the start button, load the first question
 var startButton = document.getElementById("start");
@@ -107,7 +108,7 @@ function questionClicked(){
 // Create an event listener for when any answer is clicked
 // Listener should also see if the answer is correct
 
-
+localStorage.setItem("initials", initials);
 
 
 
@@ -115,6 +116,9 @@ function endQuiz(){
   endScreenEl.removeAttribute("class")
 
 }
+
+
+
 //THEN a timer starts and I am presented with a question
 
 
