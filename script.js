@@ -11,11 +11,19 @@ var questions = [
   correctAnswer: "Isildur",
   
 }, {
-question: "Who was Bruce Lee's master?",
+  question: "Who was Bruce Lee's master?",
   answers: ["Jackie Chan", "Ip Man", "Wong Fei-Hung", "Sammo Hung"],
   correctAnswer: "Ip Man",
   
-},
+}, {
+  question: "who wrote the novel Dracula?",
+  answers: ["Bram Stoker", "Mary Shelly", "Stephen King", "Mario Puzo"],
+  correctAnswer: "Bram Stoker",
+}, {
+  question: "Which director made the movie Avatar?",
+  answers: ["Steven Spielberg", "James Cameron", "Ridley Scott", "Christopher Nolan"],
+  correctAnswer: "James Cameron",
+}
 
 ];
 var startScreenEl = document.getElementById("start-screen")
